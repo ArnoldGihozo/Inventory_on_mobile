@@ -14,7 +14,7 @@ class _MyBottomNavBarState extends State<MyBottomNaBar> {
     return Container(
       height: 75,
       padding: EdgeInsets.only(top: 2, bottom: 30),
-      color: Colors.blue,
+      color: Colors.black,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[

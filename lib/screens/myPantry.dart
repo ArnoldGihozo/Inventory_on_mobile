@@ -14,7 +14,8 @@ class _MyPantryState extends State<MyPantry> {
 
       appBar: AppBar(
         title: Text("Pantry"),
-        backgroundColor: Colors.blue,
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.black,
       ),
       bottomNavigationBar: MyBottomNaBar(),
     );
