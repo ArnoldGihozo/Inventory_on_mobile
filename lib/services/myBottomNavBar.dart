@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:inventory_on_mobile/screens/dashboard.dart';
+import 'package:inventory_on_mobile/screens/myPantry.dart';
 
 class MyBottomNaBar extends StatefulWidget {
   _MyBottomNavBarState createState() => _MyBottomNavBarState();
@@ -6,8 +8,7 @@ class MyBottomNaBar extends StatefulWidget {
 
 class _MyBottomNavBarState extends State<MyBottomNaBar> {
   Color _originalColor = Colors.black;
-  AnimationController _iconAnimationController;
- 
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,11 +26,13 @@ class _MyBottomNavBarState extends State<MyBottomNaBar> {
             onPressed: () {
               Icon(Icons.home, size: 38.0, color: Colors.grey);
 
-              Navigator.pushReplacementNamed(context, '/home');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DashboardUI()),
+              );
             },
             color: Colors.white,
           ),
-       
           IconButton(
             icon: Icon(Icons.food_bank, size: 38.0),
             onPressed: () {
@@ -45,7 +48,9 @@ class _MyBottomNavBarState extends State<MyBottomNaBar> {
                 ;
               };
 
-              Navigator.pushReplacementNamed(context, '/calendar');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyPantry()),);
             },
             color: Colors.white,
           ),
@@ -54,8 +59,5 @@ class _MyBottomNavBarState extends State<MyBottomNaBar> {
     );
   }
 
-  bool get animationStatus {
-    final AnimationStatus status = _iconAnimationController.status;
-    return status == AnimationStatus.completed;
-  }
+
 }
