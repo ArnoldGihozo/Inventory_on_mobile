@@ -38,7 +38,7 @@ Map<String, dynamic> toMap(){
   map["itemName"] = _itemName;
   map["itemCategory"] = _itemCategory;
   map["itemUnitPrice"] = _itemUnitPrice;
-   map["itemQuantity"] = _itemQuantity;
+  map["itemQuantity"] = _itemQuantity;
 
   // if( _id != null){
   //   map["id"] = _id;
@@ -53,5 +53,6 @@ Item.fromObject(dynamic object){
   this._itemUnitPrice = object["itemUnitPrice"];
   this.itemQuantity = object["itemQuantity"];
 }
+
   
 }

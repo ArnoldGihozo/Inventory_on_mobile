@@ -15,15 +15,15 @@ class DashboardUI extends StatefulWidget {
 
 class _DashboardUIState extends State<DashboardUI> {
   List<Item> items;
+  String low = "0";
+  String itemCategory = "0";
   var inStockController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     getItems();
-    // if(items == null){
-    //   inStockController.text =  " 0 items";
-    // }
-    // //inStockController.text = items.length.toString() + " items";
+    //String lowItems = lowInventory().toString();
+    lowInventory();
 
     return Scaffold(
       appBar: AppBar(
@@ -92,7 +92,7 @@ class _DashboardUIState extends State<DashboardUI> {
                                     height: 20.0,
                                   ),
                                   Text(
-                                    "5 items are low on stock",
+                                    low + " item(s) low in stock",
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 25,
@@ -151,8 +151,8 @@ class _DashboardUIState extends State<DashboardUI> {
                         ),
                         SizedBox(height: 10),
                         SizedBox(
-                          width: 120.0,
-                          height: 110.0,
+                          width: 110.0,
+                          height: 100.0,
                           child: Card(
                             color: Colors.red,
                             elevation: 2.0,
@@ -172,13 +172,13 @@ class _DashboardUIState extends State<DashboardUI> {
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 25.0),
+                                        fontSize: 20.0),
                                   ),
                                   SizedBox(
                                     height: 5.0,
                                   ),
                                   Text(
-                                    "12 Items",
+                                    categoryTrend(1) + " items",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold),
@@ -190,7 +190,7 @@ class _DashboardUIState extends State<DashboardUI> {
                         ),
                         SizedBox(
                           width: 110.0,
-                          height: 110.0,
+                          height: 100.0,
                           child: Card(
                             color: Colors.blue,
                             elevation: 2.0,
@@ -206,17 +206,17 @@ class _DashboardUIState extends State<DashboardUI> {
                                     height: 10.0,
                                   ),
                                   Text(
-                                    "Sports",
+                                    "School",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 25.0),
+                                        fontSize: 20.0),
                                   ),
                                   SizedBox(
                                     height: 5.0,
                                   ),
                                   Text(
-                                    "12 Items",
+                                    categoryTrend(3) + " items",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold),
@@ -226,9 +226,9 @@ class _DashboardUIState extends State<DashboardUI> {
                             )),
                           ),
                         ),
-                         SizedBox(
-                          width: 120.0,
-                          height: 110.0,
+                        SizedBox(
+                          width: 110.0,
+                          height: 100.0,
                           child: Card(
                             color: Colors.black,
                             elevation: 2.0,
@@ -248,13 +248,13 @@ class _DashboardUIState extends State<DashboardUI> {
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 25.0),
+                                        fontSize: 20.0),
                                   ),
                                   SizedBox(
                                     height: 5.0,
                                   ),
                                   Text(
-                                    "12 Items",
+                                    categoryTrend(2) + " items",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold),
@@ -264,7 +264,6 @@ class _DashboardUIState extends State<DashboardUI> {
                             )),
                           ),
                         ),
-   
                       ],
                     ),
                   ),
@@ -308,5 +307,53 @@ class _DashboardUIState extends State<DashboardUI> {
         items = itemList;
       });
     });
+  }
+
+  lowInventory() async {
+    int counter = 0;
+    try {
+      // ignore: await_only_futures
+      final int length = await items.length;
+
+      for (int i = 0; i < length; i++) {
+        if (items[i].itemQuantity < 2) {
+          counter++;
+        }
+      }
+      setState(() {
+        low = counter.toString();
+      });
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  //  Future<String> categoryTrend(int category) async {
+  //   int itemCateg = 0;
+  //   try {
+  //     // ignore: await_only_futures
+  //     final int length = await items.length;
+
+  //     for (int i = 0; i < length; i++) {
+  //       if (items[i].itemCategory == category) {
+  //         itemCateg++;
+  //       }
+  //     }
+  //     setState(() {
+  //       itemCategory = itemCateg.toString();
+  //     });
+  //   } catch (e) {
+  //     throw Exception(e.toString());
+  //   }
+  // }
+
+  String categoryTrend(int category) {
+    int itemCateg = 0;
+    for (int i = 0; i < items.length; i++) {
+      if (items[i].itemCategory == category) {
+        itemCateg++;
+      }
+    }
+    return itemCateg.toString();
   }
 } // end of class
