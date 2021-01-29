@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_on_mobile/screens/dashboard.dart';
-import 'package:inventory_on_mobile/screens/myPantry.dart';
+import 'package:inventory_on_mobile/screens/toolBox.dart';
 
 class MyBottomNaBar extends StatefulWidget {
   _MyBottomNavBarState createState() => _MyBottomNavBarState();
@@ -34,7 +34,7 @@ class _MyBottomNavBarState extends State<MyBottomNaBar> {
             color: Colors.white,
           ),
           IconButton(
-            icon: Icon(Icons.food_bank, size: 38.0),
+            icon: Icon(Icons.bar_chart_outlined, size: 38.0),
             onPressed: () {
               setState:
               () {
@@ -50,7 +50,7 @@ class _MyBottomNavBarState extends State<MyBottomNaBar> {
 
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MyPantry()),);
+                MaterialPageRoute(builder: (context) => ToolBox()),);
             },
             color: Colors.white,
           ),

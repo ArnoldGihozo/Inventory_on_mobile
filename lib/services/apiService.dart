@@ -7,7 +7,16 @@ class APIService{
   static String inventoryAPIUrl = 'https://inventoryonmobile.azurewebsites.net/api/inventory';
 
   static Future fetchInventory() async{
-    return await http.get(inventoryAPIUrl);
+    try{
+      final response = await http.get(inventoryAPIUrl);
+      if (response.statusCode == 200)
+         return response;
+
+    }catch (e){
+      throw Exception(e.toString());
+
+    }
+   
   }
 
   static Map<String, String> header = {
