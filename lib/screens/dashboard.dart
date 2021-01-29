@@ -25,7 +25,11 @@ class _DashboardUIState extends State<DashboardUI> {
         backgroundColor: Colors.black,
         automaticallyImplyLeading: false,
       ),
-      body: _buildDashboard(),
+      body:items == null
+          ? Center(
+              child: Text('There is nothing in your pantry'),
+            )
+          : _buildDashboard(),
       bottomNavigationBar: MyBottomNaBar(),
     );
   }
@@ -55,6 +59,21 @@ class _DashboardUIState extends State<DashboardUI> {
           ),
           Padding(padding: EdgeInsets.only(bottom:80)),
           Container(
+            // child: ListView.builder(
+            //   itemCount: items.length,
+            //   itemBuilder: (context, index){
+            //     return Card(
+            //       color: Colors.white,
+            //       elevation: 3.0,
+            //       child: ListTile(
+            //         trailing: Icon(Icons.arrow_forward_ios_rounded),
+            //         title: Text(items[index].itemName),
+                 
+            //       ),
+            //     );
+
+
+            // }),
             child: Text(items[0].itemName),
           ),
         ],
