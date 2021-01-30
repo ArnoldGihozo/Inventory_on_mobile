@@ -20,10 +20,12 @@ class _DashboardUIState extends State<DashboardUI> {
   var inStockController = TextEditingController();
 
   @override
+ 
+
+  @override
   Widget build(BuildContext context) {
     getItems();
-    //String lowItems = lowInventory().toString();
-    lowInventory();
+    //lowInventory();
 
     return Scaffold(
       appBar: AppBar(
@@ -38,7 +40,7 @@ class _DashboardUIState extends State<DashboardUI> {
       ),
       body: items == null
           ? Center(
-              child: Text('There is nothing in your pantry'),
+              child: Text('Loading your pantry ...'),
             )
           : SafeArea(
               child: Column(
@@ -92,7 +94,8 @@ class _DashboardUIState extends State<DashboardUI> {
                                     height: 20.0,
                                   ),
                                   Text(
-                                    low + " item(s) low in stock",
+                                    "hello",
+                                    //low + " item(s) low in stock",
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 25,
