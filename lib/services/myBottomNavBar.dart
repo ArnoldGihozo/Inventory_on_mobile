@@ -1,3 +1,13 @@
+/**
+ * MyBottomNavBar.dart
+ * 
+ * This class will build our bottom nav bar that you can see on all the screens.
+ * It will also map each button on the bottom nav bar to the specifc route
+ * it has to go (ie: which page is the app redirected)
+ * 
+ * Date Last Modified: January 29 2021
+ */
+
 import 'package:flutter/material.dart';
 import 'package:inventory_on_mobile/screens/dashboard.dart';
 import 'package:inventory_on_mobile/screens/toolBox.dart';
@@ -45,12 +55,12 @@ class _MyBottomNavBarState extends State<MyBottomNaBar> {
                 } else {
                   _originalColor = Colors.pink;
                 }
-                ;
               };
 
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ToolBox()),);
+                MaterialPageRoute(builder: (context) => ToolBox()),
+              );
             },
             color: Colors.white,
           ),
@@ -58,6 +68,4 @@ class _MyBottomNavBarState extends State<MyBottomNaBar> {
       ),
     );
   }
-
-
 }
