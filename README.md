@@ -1,6 +1,7 @@
 # inventory_on_mobile
 
 A new Flutter project.
+https://github.com/ArnoldGihozo/Inventory_on_mobile/blob/main/assets/LogoSI.png
 
 ## Getting Started
 
