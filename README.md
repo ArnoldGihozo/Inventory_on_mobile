@@ -33,6 +33,7 @@ This application is aimed to facilitate your invetory tracking whether it is at 
 ## Guide
 
 **Note: In order to use this app you must have internet connection availalble, which will facilitate the retrieval of information from the database.**
+
 To run the application, you must:
   - Install TestFlight (on iOS devices)
   - Log in with your AppleId
