@@ -40,6 +40,10 @@ To run the application, you must:
   - Request to be added as a Testing User to the developer at gihozo@ualberta.ca
   - Once the verification code has been received, download the app onto your phone and submit any bugs via the testflight form or over here
   
+Alternative:
+  - You can also download this git repository on your machine (please ensure to have Flutter installed) and run the code manually either using VSCODE, xCode or Android Studio.
+  - Main has the last stable release
+  
 Data Set-Up:
   - The Database contain initial data! If you wish to add more content to the database, please contact the developer, and they will give you temporary edit         access to it.
   
