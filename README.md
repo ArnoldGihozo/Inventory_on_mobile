@@ -7,12 +7,12 @@
   <h3 align="center">Smart Inventory App</h3>
 
   <p align="center">
-    Base project made to change the shopping experience.
+    A new way to track your invetory stems
     <br>
     <br>
-    <a href="https://github.com/ArnoldGihozo/shopngo_hacked2021/issues/new">Report bug</a>
+    <a href="https://github.com/ArnoldGihozo/Inventory_on_mobile/issues/new>Report bug</a>
     ·
-    <a href="https://github.com/ArnoldGihozo/shopngo_hacked2021/issues/new">Request feature</a>
+    <a href="https://github.com/ArnoldGihozo/Inventory_on_mobile/issues/new">Request feature</a>
   </p>
 </p>
 
@@ -22,47 +22,53 @@
 - [Quick start](#quick-start)
 - [Guide](#guide)
 - [Bugs and feature requests](#bugs-and-feature-requests)
-- [Creators](#creators)
+- [Creator](#creator)
 - [Thanks](#thanks)
 - [Copyright and license](#copyright-and-license)
 
 ## Quick start
 
-This is an app aimed at  pursuing and simplifying the shopping process, giving you a personal shopping assistant right on your phone. The purpose of this app was aimed at resolving an issue we found due to covid-19, to prevent less items from travelling from hand to hand.
+This application is aimed to facilitate your invetory tracking whether it is at home or within your business
 
 ## Guide
 
-**Note: In order to use this app you must give the app permission to use your camera, which you will be prompted to do so.**
- First, you will have to open your app in order to go through shoppers experience. Then you can begin scanning items in a grocery store (which we would personally recommend using QR codes).
+**Note: In order to use this app you must have internet connection availalble, which will facilitate the retrieval of information from the database.**
+To run the application, you must:
+  - Install TestFlight (on iOS devices)
+  - Log in with your AppleId
+  - Request to be added as a Testing User to the developer at gihozo@ualberta.ca
+  - Once the verification code has been received, download the app onto your phone and submit any bugs via the testflight form or over here
+  
+Data Set-Up:
+  - The Database contain initial data! If you wish to add more content to the database, please contact the developer, and they will give you temporary edit         access to it.
+  
+  
+
  
- **Note: For purposes of testing we use an excel sheet in order to demonstrate it proficiency**
-Click onto the add item, which will ask for camera access. Then scan your QR code and then get the item name and price. You will then receive a total stating how much your groceries will cost.
-
-## Bugs and feature requests
-
- - When items are dismissed the total price counter needs to be updated, to show the new total.
+ **Note: For purposes of testing, data was manually added onto the database for easy retrieval of that information**
 
 
-## Creators
+## Bugs + Expansion Work
+
+ - Search function within the Tool Box screen (function was initially implemented, however, the view was not reseting based on the user search)
+ - Notification when an item is low (meaning the quantity <= to 2)
+ - Capability to add/remove items from the app
+ - Web interace making it easier to add/remove the data in the back-end
+
+ 
+## Creator
 
 
 **Arnold Gihozo**
 
 <a href='https://github.com/ArnoldGihozo' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://upload.wikimedia.org/wikipedia/commons/0/00/Follow_button.png' border='0' alt='followArnold' /></a>
 
-**Joseph Menezes**
-
-<a href='https://github.com/joeguy57' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://upload.wikimedia.org/wikipedia/commons/0/00/Follow_button.png' border='0' alt='followJoseph' /></a>
-
-**Harshil Vyas**
-
-<a href='https://github.com/Harshil-V' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://upload.wikimedia.org/wikipedia/commons/0/00/Follow_button.png' border='0' alt='followHarshil' /></a>
 ## Thanks
 
 Thanks to all contributors and their support:
 
-## Copyright and license
+## Copyright
 
-Code and documentation copyright 2018 the authors. Code released under the [GNU General Public License v3.0](https://github.com/ArnoldGihozo/shopngo_hacked2021/blob/main/LICENSE)<!-- @IGNORE PREVIOUS: link -->.
+Code and documentation copyright 2021 the authors.
 
 Enjoy!!
