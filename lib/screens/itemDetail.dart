@@ -1,3 +1,18 @@
+/**
+ * ItemDetail.dart
+ * 
+ * This class is calleed from the toolBox class (when the user presses any given item)
+ * It inherits an input of type Item from the ToolBox class. After that, it goes
+ * to display each characteristic of that input on the screen via a textformfield
+ * 
+ * It also displays teh total value of the item by taking the price * by the quantity. 
+ * 
+ * Potential Expansion:
+ *  - since we have textformfield, we can easily update the values vy changing (if we have HttpPut implemented)
+ *  - same idea, we can also perform the addition of new items and deleting of current items
+ * 
+ * Date Last Modified: January 29 2021
+ */
 import 'package:flutter/material.dart';
 import 'package:inventory_on_mobile/services/item.dart';
 import 'package:inventory_on_mobile/services/myBottomNavBar.dart';
@@ -16,8 +31,9 @@ class _ItemDetailState extends State<ItemDetail> {
   var quantityController = TextEditingController();
   var priceController = TextEditingController();
   var totalController = TextEditingController();
-  var categories = ["Sport", "Office", "Education"];
-  final errorMessage = SnackBar(content: Text("404, Connection issues"));
+/**
+ * The following will build our main view for the itemdetail screen via Scaffold
+ */
   @override
   Widget build(BuildContext context) {
     double totalPrice = item.itemPrice * item.itemQuantity;
@@ -25,11 +41,10 @@ class _ItemDetailState extends State<ItemDetail> {
     priceController.text = "\$ " + item.itemPrice.toString();
     totalController.text = "\$ " + totalPrice.toString();
 
- 
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          item.itemName,
+          item.itemName, // display the name of the item on the appbar
           style: TextStyle(
             fontSize: 30,
           ),
@@ -42,63 +57,51 @@ class _ItemDetailState extends State<ItemDetail> {
     );
   }
 
+  /**
+   * _buildItemDetails() --> Widget (padding)
+   * 
+   * Most of our UI will be build from here (which then this function will be called in our main widget)
+   * This function displays a listview in which it has the 3 items (quantity, price and total value). It 
+   * calls the _buildTextBox function that will build those specific elemetns
+   */
   Widget _buildItemDetails() {
     return Padding(
       padding: EdgeInsets.only(top: 35.0, left: 10.0, right: 10.0),
       child: ListView(children: <Widget>[
-        TextFormField(
-          readOnly: true,
-          controller: quantityController,
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-          decoration: InputDecoration(
-              labelText: "Quantity",
-              labelStyle: TextStyle(
-                  fontSize: 40,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic),
-              border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black, width: 50),
-              )),
-        ),
+        _buildTextBox("Quantity", quantityController),
         SizedBox(height: 50),
-
-        TextFormField(
-          readOnly: true,
-          controller: priceController,
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-          decoration: InputDecoration(
-              labelText: "Price",
-              labelStyle: TextStyle(
-                  fontSize: 40,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic),
-              border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black, width: 50),
-              )),
-        ),
-
-     SizedBox(height: 50),
-         TextFormField(
-          readOnly: true,
-          controller: totalController,
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-          decoration: InputDecoration(
-              labelText: "Total Value",
-              labelStyle: TextStyle(
-                  fontSize: 40,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic),
-              border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black, width: 50),
-              )),
-        ),
+        _buildTextBox("Price", priceController),
+        SizedBox(height: 50),
+        _buildTextBox("Total Value", totalController),
       ]),
+    );
+  }
+
+/**
+ * _buildTextBox(String, TextEditingController) -> TextFormField
+ * 
+ * Given a string (for the label) and the controllerItem(for the information to display),
+ * this function will build a textform box for those items with the the specific information.
+ * It is important that this textbox only reads the value (meaning you cannot type in new values).
+ * As noted in the header of this class, this can be changed for further expansion of this class
+ * 
+ */
+  Widget _buildTextBox(String label, TextEditingController controllerItem) {
+    return TextFormField(
+      readOnly: true, // blocks editing
+      controller: controllerItem,
+      textAlign: TextAlign.center,
+      style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+      decoration: InputDecoration(
+          labelText: label,
+          labelStyle: TextStyle(
+              fontSize: 40,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.italic),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black, width: 50),
+          )),
     );
   }
 }
