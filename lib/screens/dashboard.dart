@@ -69,7 +69,7 @@ class _DashboardUIState extends State<DashboardUI> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          SizedBox(height: 60),
+          SizedBox(height: 40),
           _paddingText("Welcome!"),
           Padding(
             padding: const EdgeInsets.all(12.0),
@@ -227,13 +227,13 @@ class _DashboardUIState extends State<DashboardUI> {
     for (int i = 0; i < length; i++) {
       if (items[i].itemQuantity <= 3) {
         counter++;
-      }// if
+      } // if
     } // fpr
     setState(() {
       low = counter.toString();
     });
     return counter.toString();
-  }// lowinventory
+  } // lowinventory
 
 /**
  * _categoryTrend(int) -> String
@@ -269,6 +269,6 @@ class _DashboardUIState extends State<DashboardUI> {
         items = itemList;
       });
     });
-  }// getItems
+  } // getItems
 
 } // end of class
