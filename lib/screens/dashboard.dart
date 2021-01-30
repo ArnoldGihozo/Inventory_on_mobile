@@ -1,3 +1,15 @@
+/**
+ * Dashboard.Dart
+ * 
+ * This screen is the HomePage of our application. It contains an overview
+ * of items that are in low in stock, total items in stock and the trends 
+ * within your inventory (ie: overview of each category)
+ * 
+ * Throughout this file, you will observe that UI elements have been split into function
+ * for better visualisation and overall clean code. 
+ * 
+ * Date Last Modified: January 29 2021
+ */
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +29,12 @@ class _DashboardUIState extends State<DashboardUI> {
   String low = "0";
   String itemCategory = "0";
   var inStockController = TextEditingController();
-
-  @override
+/**
+ * UI execution starts here
+ */
   @override
   Widget build(BuildContext context) {
-    getItems();
-
+    _getItems();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -34,81 +46,69 @@ class _DashboardUIState extends State<DashboardUI> {
         backgroundColor: Colors.black,
         automaticallyImplyLeading: false,
       ),
-      body: items == null
+      body: items == null // there is case our elements are loading
           ? Center(
               child: Text('Loading your pantry ...'),
             )
-          : SafeArea(
-              child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  ),
-                ),
-                paddingText("Welcome!"),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Center(
-                    child: Wrap(
-                      spacing: 20,
-                      runSpacing: 20.0,
-                      children: <Widget>[
-                        bigTextBox("Attention", lowInventory(items.length),
-                            " item(s) in stock", Colors.yellow[800]),
-                        bigTextBox("In Stock", items.length.toString(),
-                            " item(s)", Colors.black),
-                        paddingText("Your Current Trends"),
-                        SizedBox(height: 10),
-                        _smallTextBox("Leisure", categoryTrend(1), Colors.red),
-                        _smallTextBox("School", categoryTrend(3), Colors.blue),
-                        _smallTextBox("Office", categoryTrend(2), Colors.black)
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            )),
+          : _buildDashboardUI(),
       bottomNavigationBar: MyBottomNaBar(),
     );
   }
+  // ======================================================================
+  // MAIN BODY FOR Dashboard Building
 
-  Widget _buildDashboard() {
-    return Padding(
-      padding: EdgeInsets.only(top: 35.0, left: 10.0, right: 10.0),
-      child: ListView(
+/**
+ * _buildDashboardUi() -> widget
+ * 
+ * This function is the main function that builds the elements on the dashboard screen. 
+ * It is called in the main widget and returns a Safearea widget that contains 
+ * the methods that builds the textboxes on the screen
+ */
+  Widget _buildDashboardUI() {
+    return SafeArea(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          SizedBox(height: 60),
+          _paddingText("Welcome!"),
           Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Text(
-              "Welcome, Doctor code \nSelect an option",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 28.0,
-                  fontWeight: FontWeight.bold),
-              textAlign: TextAlign.start,
+            padding: const EdgeInsets.all(12.0),
+            child: Center(
+              child: Wrap(
+                spacing: 20,
+                runSpacing: 20.0,
+                children: <Widget>[
+                  _bigTextBox("Attention", _lowInventory(items.length),
+                      " item(s) are low in stock", Colors.yellow[800]),
+                  _bigTextBox("In Stock", items.length.toString(), " item(s)",
+                      Colors.black),
+                  _paddingText("     Your Current Trends"),
+                  SizedBox(height: 50),
+                  _smallTextBox("Leisure", _categoryTrend(1), Colors.red),
+                  _smallTextBox("School", _categoryTrend(3), Colors.blue),
+                  _smallTextBox("Office", _categoryTrend(2), Colors.black)
+                ],
+              ),
             ),
-          ),
+          )
         ],
       ),
     );
-  }
+  } // buildDashboardUI
 
-  void getItems() {
-    APIService.fetchInventory().then((response) {
-      Iterable list = json.decode(response.body);
-      List<Item> itemList;
-      itemList = list.map((model) => Item.fromObject(model)).toList();
+// =========================================================================================
+// Functions that build textboxes  on screen
 
-      setState(() {
-        items = itemList;
-      });
-    });
-  }
-
-  Widget paddingText(String text) {
+/**
+ * _paddingText(String) -> Widget
+ * 
+ * This function is there to faciliate clean code. Given a string, it returns the customization
+ * padding with the given text included. Used since the same customization is used
+ * for "welcome" and "your current trends" texts
+ * 
+ * 
+ */
+  Widget _paddingText(String text) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Text(
@@ -118,9 +118,17 @@ class _DashboardUIState extends State<DashboardUI> {
         textAlign: TextAlign.start,
       ),
     );
-  }
+  } //_paddingText
 
-  Widget bigTextBox(String titleText, String numberText, String trailingText, Color colorBackground) {
+/**
+ * _bigTextBox(String, String, String, Color) -> SizedBox
+ * 
+ * This functions takes in as parameter a string title text, number to display as 
+ * type string, trailling text as type string and color. The function will
+ * then return a sized box with the above customization. 
+ */
+  Widget _bigTextBox(String titleText, String numberText, String trailingText,
+      Color colorBackground) {
     return SizedBox(
       width: 1000.0,
       height: 135.0,
@@ -155,9 +163,17 @@ class _DashboardUIState extends State<DashboardUI> {
         )),
       ),
     );
-  }
+  } // bigText
 
-  Widget _smallTextBox(String textBoxTitle, String numItemCat, Color colorBackground) {
+/**
+ * _smallTextBox(String, String, Color) --> SizedBod(Widget)
+ * 
+ * TThis functions takes in as parameter a string title text, number to display as 
+ * type string,and color. The function will
+ * then return a sized box with the above customization. 
+ */
+  Widget _smallTextBox(
+      String textBoxTitle, String numItemCat, Color colorBackground) {
     return SizedBox(
       width: 110.0,
       height: 100.0,
@@ -194,22 +210,38 @@ class _DashboardUIState extends State<DashboardUI> {
       ),
     );
   }
+// =========================================================================================
+// Helper functions that fetch and/or calculate the data needed to be displayed in textboxes
 
-  String lowInventory(int length) {
+/**
+ * _lowInventory(int) -> String
+ * 
+ * This function takes in an input of the lenght of a given list and returns 
+ * the number of items (as type string) that have quantities less than or
+ * equal to 2
+ * 
+ */
+  String _lowInventory(int length) {
     int counter = 0;
 
     for (int i = 0; i < length; i++) {
-      if (items[i].itemQuantity < 2) {
+      if (items[i].itemQuantity <= 3) {
         counter++;
-      }
-    }
+      }// if
+    } // fpr
     setState(() {
       low = counter.toString();
     });
     return counter.toString();
-  }
+  }// lowinventory
 
-  String categoryTrend(int category) {
+/**
+ * _categoryTrend(int) -> String
+ * 
+ * This function will take in the category of a given item (leisure, school or office) the
+ * return the number of items within that category as type string.
+ */
+  String _categoryTrend(int category) {
     int itemCateg = 0;
     for (int i = 0; i < items.length; i++) {
       if (items[i].itemCategory == category) {
@@ -217,5 +249,26 @@ class _DashboardUIState extends State<DashboardUI> {
       }
     }
     return itemCateg.toString();
-  }
+  } //_categoryTrend
+
+  /**
+   * _getItems() ->Void
+   * 
+   * This function will be exuted at the very begining of our program. 
+   * It will fetch all the lists from our database, assign them to our
+   * local list "items" so we can access them within our meethods.
+   * 
+   */
+  void _getItems() {
+    APIService.fetchInventory().then((response) {
+      Iterable list = json.decode(response.body);
+      List<Item> itemList;
+      itemList = list.map((model) => Item.fromObject(model)).toList();
+
+      setState(() {
+        items = itemList;
+      });
+    });
+  }// getItems
+
 } // end of class
