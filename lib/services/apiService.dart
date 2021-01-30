@@ -2,37 +2,37 @@
  * APIService.dart
  * 
  * This class is our main connection between our API and application.
- * It contains our url to our Web API 
+ * It contains our url to our Web API. When connecting, it to our Back-End
+ * system (through Visual Studio using ASP.NET and C#) it executes an
+ * HTTPGET request to our database (MongoDB).
+ * 
+ * 
+ * Potential Expansion:
+ *  - If HTTPPOst/ HTTPPUT and HTTPDelete requests are impleented in our back-end system, then 
+ *    those services can be added on this class so they can connect with our UI.
+ * 
  */
 
-import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+class APIService {
+  static String inventoryAPIUrl =
+      'https://inventoryonmobile.azurewebsites.net/api/inventory';
 
-class APIService{
-
-  static String inventoryAPIUrl = 'https://inventoryonmobile.azurewebsites.net/api/inventory';
-
-  static Future fetchInventory() async{
-    try{
+/**
+ * fetchInventory() --> Future
+ * 
+ * This function will access our API and fetch all our JSON data coming from it.
+ * If there is a failuture to connect, no response will be given and error message
+ * will be displayed at the given screen (check screen section for that).
+ */
+  static Future fetchInventory() async {
+    try {
       final response = await http.get(inventoryAPIUrl);
-      if (response.statusCode == 200)
-         return response;
-
-    }catch (e){
+      if (response.statusCode == 200) return response;
+    } catch (e) {
       throw Exception(e.toString());
-
     }
-   
-  }
-
-  static Map<String, String> header = {
-    'Content-type': 'application/json',
-    'Accept': 'application/json',
-  };
-
-  // need to add delete and post
-
-
+  } // fetchInventory
 
 }
