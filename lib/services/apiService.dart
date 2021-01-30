@@ -1,5 +1,8 @@
 /**
+ * APIService.dart
  * 
+ * This class is our main connection between our API and application.
+ * It contains our url to our Web API 
  */
 
 import 'dart:convert';

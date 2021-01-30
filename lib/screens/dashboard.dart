@@ -20,12 +20,9 @@ class _DashboardUIState extends State<DashboardUI> {
   var inStockController = TextEditingController();
 
   @override
- 
-
   @override
   Widget build(BuildContext context) {
     getItems();
-    //lowInventory();
 
     return Scaffold(
       appBar: AppBar(
@@ -94,8 +91,8 @@ class _DashboardUIState extends State<DashboardUI> {
                                     height: 20.0,
                                   ),
                                   Text(
-                                    "hello",
-                                    //low + " item(s) low in stock",
+                                    lowInventory(items.length) +
+                                        "  item(s) low in stock",
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 25,
@@ -166,7 +163,6 @@ class _DashboardUIState extends State<DashboardUI> {
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: <Widget>[
-                                  //Image.asset("assets/note.png",width: 64.0,),
                                   SizedBox(
                                     height: 10.0,
                                   ),
@@ -204,7 +200,6 @@ class _DashboardUIState extends State<DashboardUI> {
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: <Widget>[
-                                  //Image.asset("assets/note.png",width: 64.0,),
                                   SizedBox(
                                     height: 10.0,
                                   ),
@@ -242,7 +237,6 @@ class _DashboardUIState extends State<DashboardUI> {
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: <Widget>[
-                                  //Image.asset("assets/note.png",width: 64.0,),
                                   SizedBox(
                                     height: 10.0,
                                   ),
@@ -312,43 +306,19 @@ class _DashboardUIState extends State<DashboardUI> {
     });
   }
 
-  lowInventory() async {
+  String lowInventory(int length) {
     int counter = 0;
-    try {
-      // ignore: await_only_futures
-      final int length = await items.length;
 
-      for (int i = 0; i < length; i++) {
-        if (items[i].itemQuantity < 2) {
-          counter++;
-        }
+    for (int i = 0; i < length; i++) {
+      if (items[i].itemQuantity < 2) {
+        counter++;
       }
-      setState(() {
-        low = counter.toString();
-      });
-    } catch (e) {
-      throw Exception(e.toString());
     }
+    setState(() {
+      low = counter.toString();
+    });
+    return counter.toString();
   }
-
-  //  Future<String> categoryTrend(int category) async {
-  //   int itemCateg = 0;
-  //   try {
-  //     // ignore: await_only_futures
-  //     final int length = await items.length;
-
-  //     for (int i = 0; i < length; i++) {
-  //       if (items[i].itemCategory == category) {
-  //         itemCateg++;
-  //       }
-  //     }
-  //     setState(() {
-  //       itemCategory = itemCateg.toString();
-  //     });
-  //   } catch (e) {
-  //     throw Exception(e.toString());
-  //   }
-  // }
 
   String categoryTrend(int category) {
     int itemCateg = 0;
