@@ -17,8 +17,7 @@
 import 'package:http/http.dart' as http;
 
 class APIService {
-  static String inventoryAPIUrl =
-      'https://inventoryonmobile.azurewebsites.net/api/inventory';
+  static Uri inventoryAPIUrl = Uri.parse('https://inventoryonmobile.azurewebsites.net/api/inventory');
 
 /**
  * fetchInventory() --> Future

@@ -14,6 +14,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inventory_on_mobile/services/apiService.dart';
+import 'package:inventory_on_mobile/services/authentication.dart';
 import 'package:inventory_on_mobile/services/item.dart';
 import 'package:inventory_on_mobile/services/myBottomNavBar.dart';
 
@@ -29,6 +30,7 @@ class _DashboardUIState extends State<DashboardUI> {
   String low = "0";
   String itemCategory = "0";
   var inStockController = TextEditingController();
+  String userName = AuthenticationService.userNameS;
 /**
  * UI execution starts here
  */
@@ -70,7 +72,7 @@ class _DashboardUIState extends State<DashboardUI> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           SizedBox(height: 40),
-          _paddingText("Welcome!"),
+          _paddingTextWelcome("Hello, ", userName),
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: Center(
@@ -119,7 +121,17 @@ class _DashboardUIState extends State<DashboardUI> {
       ),
     );
   } //_paddingText
-
+Widget _paddingTextWelcome(String text, String usName) {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Text(
+        text + " " + usName,
+        style: TextStyle(
+            color: Colors.black, fontSize: 28.0, fontWeight: FontWeight.bold),
+        textAlign: TextAlign.start,
+      ),
+    );
+  }
 /**
  * _bigTextBox(String, String, String, Color) -> SizedBox
  * 
