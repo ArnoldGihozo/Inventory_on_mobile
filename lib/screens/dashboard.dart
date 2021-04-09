@@ -8,7 +8,6 @@
  * Throughout this file, you will observe that UI elements have been split into function
  * for better visualisation and overall clean code. 
  * 
- * Date Last Modified: January 29 2021
  */
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';

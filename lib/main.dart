@@ -5,7 +5,6 @@
  * displayed in any of the application since main.dart redirects
  * the app to our DashBoardUi page as the home page.
  * 
- * Date Last Modified: January 29 2021
  */
 import 'package:flutter/material.dart';
 import 'package:inventory_on_mobile/screens/dashboard.dart';

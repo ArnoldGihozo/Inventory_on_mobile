@@ -91,13 +91,6 @@ class AuthenticationService {
       await _authFirebase.signOut();
       await _googleSignIn.signOut();
       return 'Signout';
-      //Future<User> user = FirebaseAuth.instance.currentUser();
-      // print('$user');
-      // return new LoginScreen();
-
-      // print(_authFirebase.signOut().toString());
-      // await _authFirebase.signOut();
-      //await _googleSignIn.disconnect();
     } catch (e) {
       return e.toString();
       //print(e.toString());
@@ -106,41 +99,6 @@ class AuthenticationService {
     }
   } // end of signout
 
-  // Future registerWithEmailAndPassword(String email, String password) async {
-  //    UserCredential result = await _authFirebase.createUserWithEmailAndPassword(
-  //         email: email, password: password);
-  //   try {
-  //     User user = result.user;
-
-  //     await user.sendEmailVerification();
-  //     return _userFromUser(user);
-
-  //   } catch (e) {
-  //     print(e.toString());
-  //     return null; 
-  //   }
-  // }
-
-  //   User _userFromUser (User user){
-  //   return user != null ? User(uid: user.uid) : null ;
-  // }
-// Future signInWithEmailAndPassword(String email, String password) async {
-//     try {
-//       UserCredential result = await _authFirebase.signInWithEmailAndPassword(
-//           email: email, password: password);
-//       User user = result.user;
-
-//       if (user.isEmailVerified){
-//        return _userFromUser(user);
-//       }else{
-//         return null;
-//       }
-      
-//     } catch (e) {
-//       print(e.toString());
-//       return null; 
-//     }
-//   }
 @override
 Future<void> resetPassword(String email) async {
     await _authFirebase.sendPasswordResetEmail(email: email);
